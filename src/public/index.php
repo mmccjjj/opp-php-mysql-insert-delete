@@ -17,16 +17,30 @@
 </head>
 
 <body>
-    <?php
 
+    <?php
     echo "<h1>Hello, we are starting to work with Databases and PHP PDO!</h1>";
+
+   echo '<a href="edit-page.php">Create</a>';
 
     // phpinfo();
 
     // echo get_include_path();
     include dirname(__DIR__) . '/utils/db.php';
+ /*    createPage("Page Title", "A super awesome Page", $dbConnection); */
 
+    $page = array(
+        "id"=> 0,
+        "title"=> "Startseite",
+        "content"=>"Hello World",
+    );
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if (isset($_GET['page'])) {
+             $pageid= $_GET['page'];
+             getPageByID($pageid, $dbConnection)
+        }
+    }
 
     ?>
 </body>
